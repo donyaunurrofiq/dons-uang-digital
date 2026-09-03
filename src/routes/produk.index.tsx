@@ -9,9 +9,8 @@ import { cn } from "@/lib/utils";
 type Search = { kategori?: string };
 
 export const Route = createFileRoute("/produk/")({
-  validateSearch: (search: Record<string, unknown>): Search => ({
-    kategori: typeof search.kategori === "string" ? search.kategori : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): Search =>
+    typeof search["kategori"] === "string" ? { kategori: search["kategori"] } : {},
   head: () => ({
     meta: [
       { title: "Semua Produk Digital — DONS BANYAK UANG" },
@@ -82,7 +81,7 @@ function ProdukPage() {
                 key={k}
                 type="button"
                 onClick={() =>
-                  navigate({ search: { kategori: k === "Semua" ? undefined : k } })
+                  navigate({ search: k === "Semua" ? {} : { kategori: k } })
                 }
                 className={cn(
                   "rounded-full border px-4 py-2 text-sm font-medium transition-all",
