@@ -32,8 +32,8 @@ export function Navbar() {
               <Link
                 to={m.to}
                 {...(m.hash ? { hash: m.hash } : {})}
-                activeOptions={{ exact: m.to === "/", includeHash: false }}
-                activeProps={{ className: "text-primary bg-surface" }}
+                activeOptions={{ exact: true, includeHash: true }}
+                {...(m.hash ? {} : { activeProps: { className: "text-primary bg-surface" } })}
                 className="rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-surface hover:text-primary"
               >
                 {m.label}
